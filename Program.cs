@@ -18,8 +18,10 @@ namespace Minesweeper_kata
             {
                 for(int j=1; j<=m;j++)
                 {
-                    Console.Write(".");
+                    Console.Write(". ");
                 }
+
+                Console.Write("\n");
             }
         }
     }
