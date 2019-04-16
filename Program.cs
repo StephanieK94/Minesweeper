@@ -11,7 +11,7 @@ namespace Minesweeper_kata
             var m = 4;
 
             int[] mine1 = new int[]{1,1};
-            //int[] mine2 = new int[]{3,2};
+            int[] mine2 = new int[]{3,2};
 
             for (int i =1; i<=n; i++)
             {
@@ -19,9 +19,9 @@ namespace Minesweeper_kata
                 {
                     int[] currentPosition = new int[]{i,j};
 
-                    //Boolean boom = currentPosition == mine1; //|| currentPosition == mine2;
+                    bool bomb = currentPosition.SequenceEqual(mine1) || currentPosition.SequenceEqual(mine2);
 
-                    if(currentPosition.SequenceEqual(mine1))
+                    if(bomb == true)
                     {
                         Console.Write("* ");  
                     }
