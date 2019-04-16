@@ -25,6 +25,10 @@ namespace Minesweeper_kata
                     {
                         Console.Write("* ");  
                     }
+                    // if(currentPosition.SequenceEqual())
+                    // {
+
+                    // }
                     else
                     {
                         Console.Write(". ");  
@@ -33,11 +37,5 @@ namespace Minesweeper_kata
                 Console.Write("\n");
             }
         }
-    }
-
-
-    class NumericalOutput
-    {
-        static void 
     }
 }
