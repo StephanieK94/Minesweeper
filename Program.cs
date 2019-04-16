@@ -34,4 +34,10 @@ namespace Minesweeper_kata
             }
         }
     }
+
+
+    class NumericalOutput
+    {
+        static void 
+    }
 }
