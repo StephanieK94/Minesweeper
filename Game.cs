@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Minesweeper;
 
 namespace Minesweeper_kata
 {
@@ -76,65 +75,5 @@ namespace Minesweeper_kata
 
             Console.WriteLine(expectedOutput);
         }
-    }
-
-    public class AdjacentLocation
-    {
-        public List<Position> GetAdjacentLocations(Position mine)
-        {
-            List<Position> adjacentToMine = new List<Position>();
-
-            Position above = new Position(){ Row = mine.Row-1, Column = mine.Column };
-            Position topLeft = new Position(){ Row = mine.Row-1, Column = mine.Column-1};
-            Position topRight = new Position(){ Row = mine.Row-1, Column = mine.Column+1};
-            Position left = new Position(){ Row = mine.Row, Column =  mine.Column-1};
-            Position right = new Position(){ Row = mine.Row, Column =  mine.Column+1};
-            Position below = new Position(){ Row = mine.Row+1, Column = mine.Column};
-            Position lowerLeft  = new Position(){ Row = mine.Row+1, Column = mine.Column-1};
-            Position lowerRight = new Position(){ Row = mine.Row+1, Column = mine.Column+1};
-
-            adjacentToMine.Add(above);
-            adjacentToMine.Add(topLeft);
-            adjacentToMine.Add(topRight);
-            adjacentToMine.Add(left);
-            adjacentToMine.Add(right);
-            adjacentToMine.Add(below);
-            adjacentToMine.Add(lowerLeft);
-            adjacentToMine.Add(lowerRight);
-
-            return adjacentToMine;
-        }
-    }
-
-      public class AdjacentNumber
-    {
-        public int GetNumberOfAdjacentMines(Position current, List<Position> mineLocations)
-        {
-            var numberAdjacentBombs =0;
-
-            foreach(var mine in mineLocations)
-            {
-                List<Position> safeLocations = new List<Position>();
-                
-                AdjacentLocation location = new AdjacentLocation();
-
-                safeLocations =  location.GetAdjacentLocations(mine);
-                
-                foreach(Position safeLocation in safeLocations)
-                {
-                    if(current.Row == safeLocation.Row && current.Column == safeLocation.Column)
-                    {
-                        numberAdjacentBombs++;
-                    }
-                }                
-            }
-            return numberAdjacentBombs;
-        }
-    }
-
-    public class Position
-    {
-        public int Row {get; set;}
-        public int Column {get; set;}
     }
 }
