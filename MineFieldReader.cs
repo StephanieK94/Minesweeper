@@ -6,6 +6,14 @@ public class MineFieldReader
     {
         List<Position> mineCoordinates = new List<Position>();
         // first line will be split into strings of row and column to be passed into the length of the for loops,
+        var row;
+        var column;
+
+        var header = string.Split(" ", fieldLines[0]);
+        row = header[0];
+        column = header[1];
+
+        
 
         // for(int i = 1; i <= row; i++)
         // {
@@ -20,6 +28,6 @@ public class MineFieldReader
         // }
 
         return mineCoordinates;
-        
+
     }
 }
