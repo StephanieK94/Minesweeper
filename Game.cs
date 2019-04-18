@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace Minesweeper_kata
 {
@@ -8,6 +9,16 @@ namespace Minesweeper_kata
     {
         public static void Main(string[] args)
         {
+            using (StreamReader sr = new StreamReader("C:\\Users\\StephanieK\\source\\Minesweeper-kata\\InputField1.txt"))
+            {
+                string line;
+
+                while((line = sr.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+                }
+            }
+            
             var x = 1;
 
             var mineField = new Position()
