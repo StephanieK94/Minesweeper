@@ -9,16 +9,24 @@ namespace Minesweeper_kata
     {
         public static void Main(string[] args)
         {
+            List<string> inputField = new List<string>();
+
             using (StreamReader sr = new StreamReader("C:\\Users\\StephanieK\\source\\Minesweeper-kata\\InputField1.txt"))
             {
                 string line;
 
                 while((line = sr.ReadLine()) != null)
                 {
-                    Console.WriteLine(line);
+                    inputField.Add(line);
                 }
             }
-            
+
+            MineFieldReader field1 = new MineFieldReader();
+
+            List<Position> minefieldPositions = new List<Position>();
+
+            minefieldPositions = field1.BreakDownMineFieldFrom(inputField);
+
             var x = 1;
 
             var mineField = new Position()
