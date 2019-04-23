@@ -19,15 +19,15 @@ public class MineFieldReader
 
         for(int x=1; x<=fieldDimensions.Row; x++)
         {
-            for(int y =1; y<=fieldDimensions.Column; y++)
+            for(int y = 1; y < fieldDimensions.Column; y++)
             {
                 Position fieldPoint = new Position();
 
-                var line = fieldLines[x].Split("");
+                char[] line = fieldLines[x].ToCharArray();
 
                 fieldPoint.Row = x;
                 fieldPoint.Column = y;
-                fieldPoint.Symbol = line[y-1];
+                fieldPoint.Symbol = line[y-1].ToString();
 
                 coordinatesForSymbols.Add(fieldPoint);
             }
