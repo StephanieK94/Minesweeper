@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include ="..\Minesweeper-kata.csproj" />
+    <ProjectReference Include="..\Minesweeper_Console\Minesweeper-kata.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Minesweeper_kata;
 using Xunit;
 
 namespace Minesweeper_Tests
@@ -10,15 +8,13 @@ namespace Minesweeper_Tests
         [Fact]
         public void GivenInputReadAllLines()
         {
-            List<string> input = new List<string>
-            (
-                input[0] = "4 4",
-                input[1] = "*...",
-                input[2] = "....",
-                input[3] = ".*..",
-                input[4] = "...."
-            );
-            
+            List<string> input = new List<string>(){
+                "4 4",
+                "*...",
+                "....",
+                ".*..",
+                "...."
+            };
 
             List<Position> output = new List<Position>();
 
@@ -26,7 +22,7 @@ namespace Minesweeper_Tests
         
             output = converter.BreakDownMineFieldFrom(input);        
         
-            Assert.Equals(4, output[0].row);
+            Assert.Equal(4, output[0].Row);
         }
     }
 }
