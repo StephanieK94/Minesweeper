@@ -9,9 +9,11 @@ namespace Minesweeper_kata
     {
         public static void Main(string[] args)
         {
+            var gameNumber = 1;
+
             var path = Directory.GetCurrentDirectory();
 
-            var pathName = $"{path}\\Minesweeper_Console\\InputField1.txt";
+            var pathName = $"{path}\\InputField1.txt";
 
             List<string> inputFieldOne = new List<string>();
 
@@ -27,27 +29,27 @@ namespace Minesweeper_kata
 
             MineFieldReader mineReader = new MineFieldReader();
 
+            Position gameBoardDimensions = new Position();
+            gameBoardDimensions = mineReader.GetFieldDimensions(gameNumber, inputFieldOne[0]);
+
             List<Position> minefieldPositions = new List<Position>();
+            minefieldPositions = mineReader.GetFieldCoordinatesForPositions(gameBoardDimensions, inputFieldOne);
 
-            minefieldPositions = mineReader.BreakDownMineFieldFrom(inputFieldOne);
-
-            var rowLength = minefieldPositions[0].Row;
-            var columnLength = minefieldPositions[0].Column;
-            var gameNumber = 1;
+            var rowLength = gameBoardDimensions.Row;
+            var columnLength = gameBoardDimensions.Column;
 
             List<string> outputAll = new List<string>();
 
-            outputAll.Add($"Field #{gameNumber}\n");
-            outputAll.Add($"{rowLength} {columnLength}\n");
+            outputAll.Add(gameBoardDimensions.Symbol);
             
-            List<Position> mineLocations = new List<Position>();
             Locator mineLocator = new Locator();
 
+            List<Position> mineLocations = new List<Position>();
             mineLocations = mineLocator.GetAllMineLocationsFrom(minefieldPositions);
 
             foreach(Position currentPosition in minefieldPositions)
             {
-                if(currentPosition.Symbol == $"{rowLength} {columnLength}") continue;
+                if(currentPosition.Symbol == gameBoardDimensions.Symbol) continue;
 
                 MineFieldReader symbolGenerator = new MineFieldReader();
 
@@ -55,7 +57,7 @@ namespace Minesweeper_kata
                 
                 outputAll.Add(symbol);
 
-                if(currentPosition.Column == columnLength)
+                if(currentPosition.Column == columnLength && currentPosition.Row != rowLength)
                 {
                     outputAll.Add("\n");
                 }                
@@ -63,7 +65,15 @@ namespace Minesweeper_kata
 
             string expectedSingleStringOfAll = String.Join("", outputAll);
 
-            Console.WriteLine(expectedSingleStringOfAll);
+            //Console.WriteLine(expectedSingleStringOfAll);
+            var pathToName = $"{path}\\OutputField1.txt";
+
+            using(StreamWriter sw = new StreamWriter(pathToName))
+            {
+                sw.Write(expectedSingleStringOfAll);
+            }
+
+
         }
     }
 }

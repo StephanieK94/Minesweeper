@@ -4,17 +4,23 @@ using System.Linq;
 
 public class MineFieldReader
 {
-    public List<Position> BreakDownMineFieldFrom(List<string> fieldRows)
+    public Position GetFieldDimensions(int gameNumber, string fieldRowHeader)
     {
-        List<Position> coordinatesForSymbols = new List<Position>();
-
         Position fieldDimensions = new Position();
 
-        var header = fieldRows[0].Split(" ");
+        char[] header = fieldRowHeader.ToCharArray();
+        string row = $"{header[0]}";
+        string col = $"{header[0]}";
 
-        fieldDimensions.Row = Convert.ToInt32(header[0]);
-        fieldDimensions.Column = Convert.ToInt32(header[1]);
-        fieldDimensions.Symbol = fieldRows[0];
+        fieldDimensions.Row = Convert.ToInt32(row);
+        fieldDimensions.Column = Convert.ToInt32(col);
+        fieldDimensions.Symbol = $"Field `#{gameNumber}`\n";
+
+        return fieldDimensions;
+    }
+    public List<Position> GetFieldCoordinatesForPositions(Position fieldDimensions, List<string> fieldRows)
+    {
+        List<Position> coordinatesForSymbols = new List<Position>();
 
         coordinatesForSymbols.Add(fieldDimensions);
 
