@@ -21,6 +21,13 @@ namespace Minesweeper_Tests
                 Row=4, 
                 Column=4, 
                 Symbol= "4 4"
+            };        
+
+            Position expectedLineOneColumnOne = new Position()
+            {
+                Row=1, 
+                Column=1, 
+                Symbol= "*"
             };         
 
             List<Position> output = new List<Position>();
@@ -32,6 +39,10 @@ namespace Minesweeper_Tests
             Assert.Equal(expectedHeader.Row, output[0].Row);
             Assert.Equal(expectedHeader.Column, output[0].Column);
             Assert.Equal(expectedHeader.Symbol, output[0].Symbol);
+
+            Assert.Equal(expectedLineOneColumnOne.Row, output[1].Row);
+            Assert.Equal(expectedLineOneColumnOne.Column, output[1].Column);
+            Assert.Equal(expectedLineOneColumnOne.Symbol, output[1].Symbol);
         }
     }
 }

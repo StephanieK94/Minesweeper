@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-public class AdjacentNumber
+public class AdjacentCalculator
     {
-        public int GetNumberOfAdjacentMines(Position current, List<Position> mineLocations)
+        public string GetNumberOfAdjacentMines(Position current, List<Position> mineLocations)
         {
             var numberAdjacentBombs =0;
 
@@ -10,7 +10,7 @@ public class AdjacentNumber
             {
                 List<Position> safeLocations = new List<Position>();
                 
-                AdjacentLocation location = new AdjacentLocation();
+                Locator location = new Locator();
 
                 safeLocations =  location.GetAdjacentLocations(mine);
                 
@@ -22,6 +22,6 @@ public class AdjacentNumber
                     }
                 }                
             }
-            return numberAdjacentBombs;
+            return numberAdjacentBombs.ToString();
         }
     }

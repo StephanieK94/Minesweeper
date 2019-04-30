@@ -9,90 +9,66 @@ namespace Minesweeper_kata
     {
         public static void Main(string[] args)
         {
-            List<string> inputField = new List<string>();
+            //var path = Directory.GetCurrentDirectory();
 
-            using (StreamReader sr = new StreamReader("C:\\Users\\StephanieK\\source\\Minesweeper-kata\\InputField1.txt"))
+            var pathName = "C:\\Users\\StephanieK\\source\\Minesweeper-kata\\Minesweeper_Console\\InputField1.txt";
+
+            List<string> inputFieldOne = new List<string>();
+
+            using (StreamReader sr = new StreamReader(pathName))
             {
                 string line;
 
                 while((line = sr.ReadLine()) != null)
                 {
-                    inputField.Add(line);
+                    inputFieldOne.Add(line);    // make it have the break down mine field here but make it take in a line and return a list of positions? 
                 }
             }
 
-            MineFieldReader field1 = new MineFieldReader();
+            MineFieldReader mineReader = new MineFieldReader();
 
             List<Position> minefieldPositions = new List<Position>();
 
-            minefieldPositions = field1.BreakDownMineFieldFrom(inputField);
+            minefieldPositions = mineReader.BreakDownMineFieldFrom(inputFieldOne);
 
-            var x = 1;
+            var rowLength = minefieldPositions[0].Row;
+            var columnLength = minefieldPositions[0].Column;
+            var gameNumber = 1;
 
-            var mineField = new Position()
-            {
-                Row = 4,
-                Column = 4,
-            };
+            List<string> outputAll = new List<string>();
 
-            List<Position> mines = new List<Position>();
-
-            Position mine1 = new Position()
-            {
-                Row = 1,
-                Column = 1
-            };
-
-            Position mine2 = new Position()
-            {
-                Row = 3,
-                Column = 2
-            };
+            outputAll.Add($"Field #{gameNumber}\n");
+            outputAll.Add($"{rowLength} {columnLength}\n"); // change to minefieldPositions.Symbol or then remove the minefieldPosition[0]?
             
-            mines.Add(mine1);
-            mines.Add(mine2);
+            List<Position> mineLocations = new List<Position>();
+            Locator mineLocator = new Locator();
 
-            List<string> outputField = new List<string>();
+            mineLocations = mineLocator.GetAllMineLocationsFrom(minefieldPositions);
 
-            outputField.Add($"Field #{x}");
-            outputField.Add($"{mineField.Row} {mineField.Column}");
-            
 
-            for (int row =1; row<=mineField.Row; row++)
+
+            foreach(Position currentPosition in minefieldPositions)
             {
-                List<string> outputRows = new List<string>();
+                if(currentPosition.Symbol == $"{rowLength} {columnLength}") continue;
 
-                for(int column=1; column<=mineField.Column;column++)
+                MineFieldReader symbolGenerator = new MineFieldReader();
+
+                string symbol = symbolGenerator.ReturnPositionSymbol(currentPosition, mineLocations);
+                
+                outputAll.Add(symbol);
+
+                if(currentPosition.Column == columnLength)
                 {
-                    var currentPosition = new Position()
-                    {
-                        Row = row,
-                        Column = column,
-                    };
-
-                    bool bomb = (currentPosition.Row == mines[0].Row && currentPosition.Column == mines[0].Column) || 
-                                (currentPosition.Row == mines[1].Row && currentPosition.Column == mines[1].Column);
-
-                    if(bomb == true)
-                    {
-                        outputRows.Add("*");  
-                    }
-                    else
-                    {
-                        AdjacentNumber mineAdj = new AdjacentNumber();
-
-                        int number = mineAdj.GetNumberOfAdjacentMines(currentPosition, mines);
-
-                        outputRows.Add(number.ToString());  
-                    }                
-                }
-                string singleRow = String.Join(" ", outputRows);
-                outputField.Add(singleRow);
+                    outputAll.Add("\n");
+                }                
             }
+            
+            string expectedSingleStringOfAll = String.Join("", outputAll);
 
-            string expectedOutput = String.Join("\n", outputField);
 
-            Console.WriteLine(expectedOutput);
+            Console.WriteLine(expectedSingleStringOfAll);
+
+            // TODO: Refactor this into methods that when read in, will automatically save these as the output
         }
     }
 }
