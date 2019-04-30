@@ -22,33 +22,29 @@ public class Locator
     {
         List<Position> adjacentToMine = new List<Position>();
 
-        // Make this a loop 1-8 which doesn't add that position if the row or column is 0?
-        
         Position above = new Position(){ Row = mine.Row-1, Column = mine.Column };
-        adjacentToMine.Add(above);
-
-        Position topLeft = new Position(){ Row = mine.Row-1, Column = mine.Column-1};
-        adjacentToMine.Add(topLeft);
-
-        Position topRight = new Position(){ Row = mine.Row-1, Column = mine.Column+1};
-        adjacentToMine.Add(topRight);
-
-        Position left = new Position(){ Row = mine.Row, Column =  mine.Column-1};
-        adjacentToMine.Add(left);
-
-        Position right = new Position(){ Row = mine.Row, Column =  mine.Column+1};
-        adjacentToMine.Add(right);
+        if(above.Row > 0 && above.Column > 0) adjacentToMine.Add(above);
 
         Position below = new Position(){ Row = mine.Row+1, Column = mine.Column};
-        adjacentToMine.Add(below);
+        if(below.Row > 0 && below.Column > 0) adjacentToMine.Add(below);
+
+        Position topLeft = new Position(){ Row = mine.Row-1, Column = mine.Column-1};
+        if(topLeft.Row > 0 && topLeft.Column > 0) adjacentToMine.Add(topLeft);
+
+        Position topRight = new Position(){ Row = mine.Row-1, Column = mine.Column+1};
+        if(topRight.Row > 0 && topRight.Column > 0) adjacentToMine.Add(topRight);
+
+        Position left = new Position(){ Row = mine.Row, Column =  mine.Column-1};
+        if(left.Row > 0 && left.Column > 0) adjacentToMine.Add(left);
+
+        Position right = new Position(){ Row = mine.Row, Column =  mine.Column+1};
+        if(right.Row > 0 && right.Column > 0) adjacentToMine.Add(right);
 
         Position lowerLeft  = new Position(){ Row = mine.Row+1, Column = mine.Column-1};
-        adjacentToMine.Add(lowerLeft);
+        if(lowerLeft.Row > 0 && lowerLeft.Column > 0) adjacentToMine.Add(lowerLeft);
 
         Position lowerRight = new Position(){ Row = mine.Row+1, Column = mine.Column+1};
-        adjacentToMine.Add(lowerRight);
-
-        // need to add a null check to ignore the Positions or add into the Adjacent Locations so not even added
+        if(lowerRight.Row > 0 && lowerRight.Column > 0) adjacentToMine.Add(lowerRight);
 
         return adjacentToMine;
     }
