@@ -9,9 +9,9 @@ namespace Minesweeper_kata
     {
         public static void Main(string[] args)
         {
-            //var path = Directory.GetCurrentDirectory();
+            var path = Directory.GetCurrentDirectory();
 
-            var pathName = "C:\\Users\\StephanieK\\source\\Minesweeper-kata\\Minesweeper_Console\\InputField1.txt";
+            var pathName = $"{path}\\Minesweeper_Console\\InputField1.txt";
 
             List<string> inputFieldOne = new List<string>();
 
@@ -38,14 +38,12 @@ namespace Minesweeper_kata
             List<string> outputAll = new List<string>();
 
             outputAll.Add($"Field #{gameNumber}\n");
-            outputAll.Add($"{rowLength} {columnLength}\n"); // change to minefieldPositions.Symbol or then remove the minefieldPosition[0]?
+            outputAll.Add($"{rowLength} {columnLength}\n");
             
             List<Position> mineLocations = new List<Position>();
             Locator mineLocator = new Locator();
 
             mineLocations = mineLocator.GetAllMineLocationsFrom(minefieldPositions);
-
-
 
             foreach(Position currentPosition in minefieldPositions)
             {
@@ -62,13 +60,10 @@ namespace Minesweeper_kata
                     outputAll.Add("\n");
                 }                
             }
-            
+
             string expectedSingleStringOfAll = String.Join("", outputAll);
 
-
             Console.WriteLine(expectedSingleStringOfAll);
-
-            // TODO: Refactor this into methods that when read in, will automatically save these as the output
         }
     }
 }
