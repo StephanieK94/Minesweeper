@@ -72,8 +72,6 @@ namespace Minesweeper_kata
             {
                 sw.Write(expectedSingleStringOfAll);
             }
-
-
         }
     }
 }
